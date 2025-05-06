@@ -1,14 +1,34 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 
-const ProductList = ({ products }) => {
-  // TODO: Check if the product list is empty and display a message if needed
+function ProductList(props) {
+  const products = props.products;
+  const removeProductById = props.removeProductById;
+
+  let inStock = false;
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].inStock) {
+      inStock = true;
+    }
+  }
+
+  if (!inStock) {
+    return <p>No products in stock.</p>;
+  }
 
   return (
     <div>
-      {/* TODO: Iterate over the products array and render a ProductCard for each product */}
+      {products.map(function (product) {
+        return (
+          <ProductCard
+            key={product.id}
+            product={product}
+            removeProductById={removeProductById}
+          />
+        );
+      })}
     </div>
   );
-};
+}
 
 export default ProductList;
