@@ -2,15 +2,9 @@ import React from 'react';
 import ProductCard from './ProductCard';
 
 function ProductList(props) {
-  const products = props.products;
-  const removeProductById = props.removeProductById;
+  const { products, removeProductById, cart, toggleCart } = props;
 
-  let inStock = false;
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].inStock) {
-      inStock = true;
-    }
-  }
+  const inStock = products.some(product => product.inStock);
 
   if (!inStock) {
     return <p>No products in stock.</p>;
@@ -18,17 +12,18 @@ function ProductList(props) {
 
   return (
     <div>
-      {products.map(function (product) {
-        return (
-          <ProductCard
-            key={product.id}
-            product={product}
-            removeProductById={removeProductById}
-          />
-        );
-      })}
+      {products.map(product => (
+        <ProductCard
+          key={product.id}
+          product={product}
+          inCart={cart.includes(product.id)}
+          toggleCart={toggleCart}
+          removeProductById={removeProductById}
+        />
+      ))}
     </div>
   );
 }
 
 export default ProductList;
+

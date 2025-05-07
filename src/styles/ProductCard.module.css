@@ -1,3 +1,37 @@
-/* TODO: Style the product card container */
 
-/* TODO: Add special styling for out-of-stock products */
+.card {
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #000;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .outOfStock {
+    opacity: 0.5;
+    background-color: #fdd;
+  }
+
+  .inCart {
+    border: 2px solid green;
+    background-color: #e7fbe7;
+  }
+  
+
+  .dark .card {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+    border-color: #444;
+  }
+  
+  .dark .inCart {
+    background-color: #294d29;
+  }
+  
+  .dark .outOfStock {
+    background-color: #5a2a2a;
+    opacity: 1; 
+  }
+  
